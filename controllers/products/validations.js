@@ -1,0 +1,30 @@
+const Joi=require("joi")
+module.exports.VproductSchema=Joi.object({
+    title:Joi.string().required(),
+    category:Joi.string().required().min(3),
+    channel:Joi.string(),
+    region:Joi.object({
+        State:Joi.string().required(),
+        City:Joi.string().required()
+    })
+}).required()
+
+module.exports.VproductTypeSchema=Joi.object({
+    available:Joi.boolean().required(),
+    stock:Joi.number().required(),
+    price:Joi.object({
+        original:Joi.number().required(),
+        discount:Joi.number(),
+        bulk_count:Joi.number(),
+        discount_quantity:Joi.number(),
+        currency:Joi.string().required()
+    }),
+    description:Joi.string().required(),
+    dimensions:Joi.object({
+        width:Joi.number(),
+        height:Joi.number(),
+        length:Joi.number(),
+        unit:Joi.string()
+    }),
+    images:Joi.string()
+}).required()
