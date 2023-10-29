@@ -16,6 +16,7 @@ app.use(express.urlencoded({extended: false}));
 
 
 app.use('/api',Router)
+app.use('/register', require('./routes/register'))
 
 mongoose.connection.once("open", ()=>{
     console.log("Connected to mongoDB");
