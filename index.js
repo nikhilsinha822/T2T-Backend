@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const PORT = process.env.PORT || 5000
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const corsOption = require('./config/corsOption')
 const Router = require('./routes/productRoutes');
 require('dotenv').config();
@@ -15,7 +16,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}));
 
 
+app.use(cookieParser());
+
 app.use('/api',Router)
+app.use('/login', require('./routes/login'))
 app.use('/register', require('./routes/register'))
 
 mongoose.connection.once("open", ()=>{
